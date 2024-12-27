@@ -1,0 +1,26 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación (si aplicas compilación o generación de archivos)
+*.o
+*.out
+*.exe
+*.class
+
+# Archivos temporales de editores de texto
+*.swp
+*.swo
+*~
+
+# Archivos de logs
+*.log
+
+# Archivos de dependencias (si usas Node.js, por ejemplo)
+node_modules/
+
+# Archivos de configuración del entorno (por ejemplo, si usas Python, por ejemplo)
+.env
+
+# Carpeta de configuraciones de Visual Studio Code
+.vscode/
