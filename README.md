@@ -1,7 +1,7 @@
 # problemPractice
 
-0 problems yet...
+0 problems and counting...
 
-That counter will be updated automatically with the problem counter, written in C (for windows)
+counter will be updated automatically with the problem counter, written in C (for windows)
 
 this repository holds all my problem sets where I practice with codility or leetcode

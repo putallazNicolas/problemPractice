@@ -5,8 +5,10 @@
 
 void changePath(char *path);
 int countFiles(char *path);
+void editReadme(int number);
 
 const char *thisPath = "\\problemCounter\\problemCounter.exe";
+const char *readmePath = "..\\README.md";
 
 int main(void){
     // Get problems path
@@ -17,7 +19,8 @@ int main(void){
     // Open directory to count files
     int fileCount = countFiles(directory);
     printf("%i\n", fileCount);
-    // Change README file
+    // Edit README file
+    editReadme(fileCount);
 }
 
 void changePath(char *path) {
@@ -52,4 +55,51 @@ int countFiles(char *path){
     }
     FindClose(hFind);
     return counter;
+}
+
+void editReadme(int number) {
+    FILE *README, *tmp;
+    char line[1024];
+    int lineNumber = 1;
+    int targetLine = 3;  // Línea a editar
+    char numberStr[1024];
+    
+    // Convertir el número a texto y concatenar el resto
+    sprintf(numberStr, "%d", number);
+    strcat(numberStr, " problems and counting...\n");
+
+    // Abrir el archivo original para leer
+    README = fopen(readmePath, "r");
+    if (README == NULL) {
+        perror("Error al abrir el archivo");
+        return;
+    }
+
+    // Crear un archivo temporal para escribir los cambios
+    tmp = fopen("tmp.md", "w");
+    if (tmp == NULL) {
+        perror("Error al abrir el archivo temporal");
+        fclose(README);
+        return;
+    }
+
+    // Leer el archivo línea por línea
+    while (fgets(line, sizeof(line), README)) {
+        if (lineNumber == targetLine) {
+            // Si estamos en la línea que queremos modificar, escribir el nuevo texto
+            fputs(numberStr, tmp);
+        } else {
+            // Copiar las líneas no modificadas al archivo temporal
+            fputs(line, tmp);
+        }
+        lineNumber++;
+    }
+
+    // Cerrar ambos archivos
+    fclose(README);
+    fclose(tmp);
+
+    // Reemplazar el archivo original con el archivo temporal
+    remove(readmePath);
+    rename("tmp.md", readmePath);
 }
