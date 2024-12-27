@@ -50,5 +50,6 @@ int countFiles(char *path){
             }
         } while (FindNextFile(hFind, &ffd) != 0);
     }
+    FindClose(hFind);
     return counter;
 }
