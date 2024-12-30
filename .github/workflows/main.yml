@@ -1,0 +1,19 @@
+name: Ejecutar Script en C
+
+on:
+  push:
+    branches:
+      - main  # Ejecutar el workflow solo en pushes a la rama "main"
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest  # Usar un runner con Ubuntu para compilar y ejecutar scripts en C
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3  # Descargar el repositorio
+
+      - name: Compilar y ejecutar script en C
+        run: |
+          gcc -o salida ./problemCounter/problemCounter.c
+          ./salida
