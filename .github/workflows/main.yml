@@ -7,7 +7,7 @@ on:
 
 jobs:
   execute-script:
-    runs-on: windows-latest  # Usar un runner con Ubuntu para compilar y ejecutar scripts en C
+    runs-on: ubuntu-latest  # Usar un runner con Ubuntu para compilar y ejecutar scripts en C
 
     steps:
       - name: Checkout del código
@@ -15,5 +15,16 @@ jobs:
 
       - name: Compilar y ejecutar script en C
         run: |
-          gcc -o salida ./problemCounter/problemCounter.c
-          ./salida
+          gcc -o salida problemCounter/problemCounter.c  # Compila el script
+          ./salida                            # Ejecuta el script
+
+      - name: Confirmar los cambios
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Modificaciones realizadas por el script en C" || echo "Sin cambios para confirmar"
+
+      - name: Subir los cambios
+        run: |
+          git push
