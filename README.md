@@ -1,6 +1,6 @@
 # problemPractice
 
-0 problems and counting...
+1 problems and counting...
 
 counter will be updated automatically with the problem counter, written in C (for windows)
 
