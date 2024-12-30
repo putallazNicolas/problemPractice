@@ -7,7 +7,7 @@ on:
 
 jobs:
   execute-script:
-    runs-on: ubuntu-latest  # Usar un runner con Ubuntu para compilar y ejecutar scripts en C
+    runs-on: windows-latest  # Usar un runner con Ubuntu para compilar y ejecutar scripts en C
 
     steps:
       - name: Checkout del código
